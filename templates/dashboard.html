@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Server Monitoring Dashboard</title>
+</head>
+<body>
+    <h1>Server Monitoring Dashboard</h1>
+
+    <h2>CPU Usage:</h2>
+    <p>{{ cpu_usage }}%</p>
+
+    <h2>Memory Utilization:</h2>
+    <p>Total Memory: {{ total_memory }} bytes</p>
+    <p>Available Memory: {{ available_memory }} bytes</p>
+    <p>Memory Usage: {{ memory_usage }}%</p>
+
+    <h2>Disk Space:</h2>
+    <p>Total Disk Space: {{ total_disk_space }} bytes</p>
+    <p>Used Disk Space: {{ used_disk_space }} bytes</p>
+    <p>Free Disk Space: {{ free_disk_space }} bytes</p>
+    <p>Disk Space Usage: {{ disk_space_usage }}%</p>
+
+    <h2>Network Statistics:</h2>
+    <p>Bytes Sent: {{ bytes_sent }}</p>
+    <p>Bytes Received: {{ bytes_received }}</p>
+    <p>Packets Sent: {{ packets_sent }}</p>
+    <p>Packets Received: {{ packets_received }}</p>
+</body>
+</html>
