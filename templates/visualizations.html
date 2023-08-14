@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Server Monitoring Visualizations</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+    <style>
+        body, h1, h2, h4, h4, h5, h6 {font-family: "Karma", sans-serif}
+        .w3-bar-block .w3-bar-item {padding:20px}
+    </style>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+
+<div id="cpu-plot"></div>
+<div id="memory-plot"></div>
+
+<script type="text/javascript">
+    // Get the CPU data from the cpu_plot_div variable passed from Flask
+    var cpuPlotDiv = document.getElementById('cpu-plot');
+    cpuPlotDiv.innerHTML = '{{ cpu_plot_div|safe }}';
+</script>
+<script type="text/javascript">
+    // Get the memory data from the memory_plot_div variable passed from Flask
+    var memoryPlotDiv = document.getElementById('memory-plot');
+    memoryPlotDiv.innerHTML = '{{ memory_plot_div|safe }}';
+</script>
+
+</body>
+</html>
