@@ -1,6 +1,7 @@
 import psutil
 import matplotlib
 import flask
+import time
 
 
 
@@ -12,6 +13,7 @@ app = Flask(__name__, static_folder='templates')
 def index():
     # Add code here to retrieve server performance data using psutil
     # Store the data in suitable variables to pass to the template
+    start_time = time.time()  # Record the start time
     cpu_usage = psutil.cpu_percent(interval=None)
     memory = psutil.virtual_memory()
     total_memory = memory.total
@@ -27,6 +29,8 @@ def index():
     bytes_received = network_stats.bytes_recv
     packets_sent = network_stats.packets_sent
     packets_received = network_stats.packets_recv
+    end_time = time.time()  # Record the end time
+    response_time = end_time - start_time  # Calculate response time in seconds
     
     # Pass the variables containing the data to the template
     return render_template('/dashboard_template.html',
@@ -41,7 +45,8 @@ def index():
                            bytes_sent=bytes_sent,
                            bytes_received=bytes_received,
                            packets_sent=packets_sent,
-                           packets_received=packets_received)
+                           packets_received=packets_received,
+                           response_time=response_time)
 
 if __name__ == '__main__':
     app.run()  # debug=True for development mode  
