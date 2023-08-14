@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 <style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
+body,h1,h2,h4,h4,h5,h6 {font-family: "Karma", sans-serif}
 .w3-bar-block .w3-bar-item {padding:20px}
 </style>
 </head>
@@ -31,25 +31,25 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
   <!-- First Photo Grid-->
   <div class="w3-row-padding w3-padding-16 w3-center">
     <h2>Memory Utilization:</h2>
+    <p>The percentage of available memory being used by a system or process</p>
     <div class="w3-third">
       <img src="/templates/images/dummy.png" alt="Sandwich" style="width:100%">
-      <h3>Total Memory: {{ total_memory }} bytes</h3>
-      <p>Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+      <h4>Total Memory: {{ total_memory }} bytes</h4>
+      <p>The total amount of memory (RAM) installed in a system </p>
     </div>
     <div class="w3-third">
       <img src="/templates/images/dummy.png" alt="Steak" style="width:100%">
-      <h3>Available Memory: {{ available_memory }} bytes</h3>
-      <p>Once again, some random text to lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+      <h4>Available Memory: {{ available_memory }} bytes</h4>
+      <p>Indicates how much of the total memory is currently not being used</p>
     </div>
     <div class="w3-third">
       <img src="/templates/images/dummy.png" alt="Cherries" style="width:100%">
-      <h3>Memory Usage: {{ memory_usage }}%</h3>
-      <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
-      <p>What else?</p>
+      <h4>Memory Usage: {{ memory_usage }}%</h4>
+      <p>Represents the portion of memory that is actively being used by the system or processes</p>
     </div>
     <!-- <div class="w3-quarter"> -->
       <!-- <img src="/templates/images/dummy.png" alt="Pasta and Wine" style="width:100%">
-      <h3>Once Again, Robust Wine and Vegetable Pasta</h3>
+      <h4>Once Again, Robust Wine and Vegetable Pasta</h4>
       <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p> -->
     <!-- </div> -->
   </div>
@@ -57,51 +57,52 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
   <!-- Second Photo Grid-->
   <div class="w3-row-padding w3-padding-16 w3-center">
     <h2>Disk Space:</h2>
+    <p>The total amount of storage capacity available on a computer's hard drive or other storage medium</p>
     <div class="w3-quarter">
       <img src="/templates/images/dummy.png" alt="Sandwich" style="width:100%">
-      <h3>Total Disk Space: {{ total_disk_space }} bytes</h3>
-      <p>Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+      <h4>Total Disk Space: {{ total_disk_space }} bytes</h4>
+      <p>The overall capacity of a storage medium (such as a hard drive)</p>
     </div>
     <div class="w3-quarter">
       <img src="/templates/images/dummy.png" alt="Steak" style="width:100%">
-      <h3>Used Disk Space: {{ used_disk_space }} bytes</h3>
-      <p>Once again, some random text to lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+      <h4>Used Disk Space: {{ used_disk_space }} bytes</h4>
+      <p>The amount of space currently occupied by files and data</p>
     </div>
     <div class="w3-quarter">
       <img src="/templates/images/dummy.png" alt="Cherries" style="width:100%">
-      <h3>Free Disk Space: {{ free_disk_space }} bytes</h3>
-      <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
-      <p>What else?</p>
+      <h4>Free Disk Space: {{ free_disk_space }} bytes</h4>
+      <p>The remaining available space for storage</p>
     </div>
     <div class="w3-quarter">
       <img src="/templates/images/dummy.png" alt="Pasta and Wine" style="width:100%">
-      <h3>Disk Space Usage: {{ disk_space_usage }}%</h3>
-      <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+      <h4>Disk Space Usage: {{ disk_space_usage }}%</h4>
+      <p>The proportion of the total disk space being used by data and files</p>
     </div>
   </div>
 
   <!-- Third Photo Grid-->
   <div class="w3-row-padding w3-padding-16 w3-center">
     <h2>Network Statistics:</h2>
+    <p>The measurements and analysis of various data and information related to a computer network, such as bandwidth, latency, packet loss, and overall network performance and efficiency</p>
     <div class="w3-quarter">
       <img src="/templates/images/dummy.png" alt="Popsicle" style="width:100%">
-      <h3>Bytes Sent: {{ bytes_sent }}</h3>
-      <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+      <h4>Bytes Sent: {{ bytes_sent }}</h4>
+      <p>The total number of bytes of data transmitted from a device</p>
     </div>
     <div class="w3-quarter">
       <img src="/templates/images/dummy.png" alt="Salmon" style="width:100%">
-      <h3>Bytes Received: {{ bytes_received }}</h3>
-      <p>Once again, some random text to lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+      <h4>Bytes Received: {{ bytes_received }}</h4>
+      <p>The total number of bytes of data received by a device</p>
     </div>
     <div class="w3-quarter">
       <img src="/templates/images/dummy.png" alt="Sandwich" style="width:100%">
-      <h3>Packets Sent: {{ packets_sent }}</h3>
-      <p>Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+      <h4>Packets Sent: {{ packets_sent }}</h4>
+      <p>The total number of network packets sent from a device</p>
     </div>
     <div class="w3-quarter">
         <img src="/templates/images/dummy.png" alt="Popsicle" style="width:100%">
-        <h3>Packets Received: {{ packets_received }}</h3>
-        <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+        <h4>Packets Received: {{ packets_received }}</h4>
+        <p>The total number of network packets received by a device</p>
       </div>
   </div>
 
