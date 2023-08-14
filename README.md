@@ -1,6 +1,6 @@
 # Server_-monitoring_dashboard
 
-Certainly! Here is a step-by-step guide to help you build a server monitoring dashboard using Python:
+Here is a step-by-step guide to help you build a server monitoring dashboard using Python:
 Step 1: Install the required packages
 - Begin by installing the necessary Python packages. You will need packages such as psutil, matplotlib, and Flask.
 - Use pip to install the packages by running the following commands:
