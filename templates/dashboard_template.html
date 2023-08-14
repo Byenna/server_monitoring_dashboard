@@ -15,6 +15,7 @@ body,h1,h2,h4,h4,h5,h6 {font-family: "Karma", sans-serif}
 <body>
 
   <div id="cpu-plot"></div>
+  <div id="memory-plot"></div>
 
 <!-- Top menu -->
 <div class="w3-top">
@@ -116,9 +117,14 @@ body,h1,h2,h4,h4,h5,h6 {font-family: "Karma", sans-serif}
 </body>
 
 <script type="text/javascript">
-  // Get the CPU data from the plot_div variable passed from Flask
-  var plotDiv = document.getElementById('cpu-plot');
-  plotDiv.innerHTML = '{{ plot_div|safe }}';
+  // Get the CPU data from the cpu_plot_div variable passed from Flask
+  var cpuPlotDiv = document.getElementById('cpu-plot');
+  cpuPlotDiv.innerHTML = '{{ cpu_plot_div|safe }}';
+</script>
+<script type="text/javascript">
+  // Get the memory data from the memory_plot_div variable passed from Flask
+  var memoryPlotDiv = document.getElementById('memory-plot');
+  memoryPlotDiv.innerHTML = '{{ memory_plot_div|safe }}';
 </script>
 
 </html>

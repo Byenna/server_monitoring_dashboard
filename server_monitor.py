@@ -34,21 +34,41 @@ def index():
     end_time = time.time()  # Record the end time
     response_time = end_time - start_time  # Calculate response time in seconds
 
-    # start for the CPU---------------------------
-    data = go.Bar(x=cores, y=cpu_percents)
-    layout = go.Layout(title='CPU Usage', xaxis={'title': 'Each CPU Core'}, yaxis={'title': 'Usage (%)'})
-    fig = go.Figure(data=[data], layout=layout)
+    # Memory usage
+    memory = psutil.virtual_memory()
+    memory_used = memory.used / (1024 ** 2)  # Convert to MB
+    memory_available = memory.available / (1024 ** 2)  # Convert to MB
+    memory_percent = memory.percent
 
-    plot_div = plotly.offline.plot(fig, output_type='div', show_link=False)
-    # end for the CPU---------------------------
-    
-    return render_template('dashboard_template.html', plot_div=plot_div, cpu_usage=cpu_usage,
+    memory_plot_div = create_memory_plot(memory_used, memory_available)
+
+    # CPU usage
+    cpu_plot_div = create_cpu_plot(cores, cpu_percents)
+
+    return render_template('dashboard_template.html',
+                           memory_plot_div=memory_plot_div,
+                           cpu_plot_div=cpu_plot_div,
+                           memory_percent=memory_percent, cpu_usage=cpu_usage,
                            total_memory=total_memory, available_memory=available_memory,
                            memory_usage=memory_usage, total_disk_space=total_disk_space,
                            used_disk_space=used_disk_space, free_disk_space=free_disk_space,
                            disk_space_usage=disk_space_usage, bytes_sent=bytes_sent,
                            bytes_received=bytes_received, packets_sent=packets_sent,
                            packets_received=packets_received, response_time=response_time)
+
+def create_memory_plot(used, available):
+    data = go.Bar(x=['Used', 'Available'], y=[used, available])
+    layout = go.Layout(title='Memory Utilization', xaxis={'title': 'Memory Type'}, yaxis={'title': 'Memory (MB)'})
+    fig = go.Figure(data=[data], layout=layout)
+    plot_div = plotly.offline.plot(fig, output_type='div', show_link=False)
+    return plot_div
+
+def create_cpu_plot(cores, cpu_percents):
+    data = go.Bar(x=cores, y=cpu_percents)
+    layout = go.Layout(title='CPU Usage', xaxis={'title': 'Each CPU Core'}, yaxis={'title': 'Usage (%)'})
+    fig = go.Figure(data=[data], layout=layout)
+    plot_div = plotly.offline.plot(fig, output_type='div', show_link=False)
+    return plot_div
 
 if __name__ == '__main__':
     app.run(debug=True)  # debug=True for development mode
