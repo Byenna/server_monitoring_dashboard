@@ -8,20 +8,18 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from config import EMAIL_ADDRESS, EMAIL_PASSWORD
 import requests
-
-# Define the URL of your Flask app
-url = 'http://localhost:5000/check_metrics'  # Replace with the actual URL of your app
-
-# Send a POST request
-response = requests.post(url)
-
-# Print the response
-print(response.text)
+from flask import Flask, render_template, jsonify
 
 
-from flask import Flask, render_template, request
+
+
+
 
 app = Flask(__name__, static_folder='templates')
+
+
+
+print('hello')
 
 @app.route('/')
 def index():
@@ -94,16 +92,17 @@ def create_cpu_plot(cores, cpu_percents):
     plot_div = plotly.offline.plot(fig, output_type='div', show_link=False)
     return plot_div
 
-@app.route('/check_metrics', methods=['POST'])
+@app.route('/check_metrics.html', methods=['POST'])
 def check_metrics():
-    cpu_usage = get_cpu_usage()  # Implement a function to retrieve CPU usage
+    # cpu_usage = get_cpu_usage()  # Implement a function to retrieve CPU usage
 
-    if cpu_usage > 90:  # Your threshold value
-        subject = 'Alert: High CPU Usage'
-        message = f'CPU usage is {cpu_usage}%, which is above the threshold.'
-        send_email_alert(subject, message)
+    # if cpu_usage > 90:  # Your threshold value
+    #     subject = 'Alert: High CPU Usage'
+    #     message = f'CPU usage is {cpu_usage}%, which is above the threshold.'
+    #     send_email_alert(subject, message)
 
-    return 'Metrics checked'
+    # return 'Metrics checked'
+    return jsonify(message='Metrics checked successfully!')
 
 def send_email_alert(subject, message):
     msg = MIMEMultipart()
