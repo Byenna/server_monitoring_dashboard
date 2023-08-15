@@ -8,8 +8,8 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from config import EMAIL_ADDRESS, EMAIL_PASSWORD
 import requests
-from flask import Flask, render_template, jsonify
-
+from flask import Flask, render_template, jsonify, request
+import ezgmail
 
 
 
@@ -17,7 +17,13 @@ from flask import Flask, render_template, jsonify
 
 app = Flask(__name__, static_folder='templates')
 
-
+try:
+    ezgmail.init()
+    print("SMTP login successful.")
+except ezgmail.SMTPAuthenticationError:
+    print("SMTP login failed. Check if Less secure app access is enabled.")
+except Exception as e:
+    print("An error occurred:", str(e))
 
 print('hello')
 
@@ -94,27 +100,22 @@ def create_cpu_plot(cores, cpu_percents):
 
 @app.route('/check_metrics.html', methods=['POST'])
 def check_metrics():
-    # cpu_usage = get_cpu_usage()  # Implement a function to retrieve CPU usage
+    cpu_usage = psutil.cpu_percent(interval=None)
+    
+    if cpu_usage > 1:  # Set your desired CPU threshold here
+        subject = "High CPU Usage Alert"
+        body = f"CPU usage is {cpu_usage}% which is above the threshold."
+        
+        try:
+            ezgmail.send(EMAIL_ADDRESS, subject, body)
+            print("Email sent successfully.")
+        except Exception as e:
+            print("Error sending email:", str(e))
+    
+    return "Metrics checked and email sent if necessary."
 
-    # if cpu_usage > 90:  # Your threshold value
-    #     subject = 'Alert: High CPU Usage'
-    #     message = f'CPU usage is {cpu_usage}%, which is above the threshold.'
-    #     send_email_alert(subject, message)
 
-    # return 'Metrics checked'
-    return jsonify(message='Metrics checked successfully!')
-
-def send_email_alert(subject, message):
-    msg = MIMEMultipart()
-    msg['From'] = EMAIL_ADDRESS
-    msg['To'] = 'recipient@example.com'
-    msg['Subject'] = subject
-    msg.attach(MIMEText(message, 'plain'))
-
-    with smtplib.SMTP('smtp.gmail.com', 587) as server:
-        server.starttls()
-        server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
-        server.send_message(msg)
+   
 
 
 if __name__ == '__main__':
